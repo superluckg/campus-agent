@@ -58,8 +58,8 @@ FastAPI + LangGraph（127.0.0.1:8000）
 #### 1. 下载项目
 
 ```powershell
-git clone https://github.com/superluckg/qust-campus-agent.git
-cd qust-campus-agent
+git clone https://github.com/superluckg/campus-agent.git
+cd campus-agent
 ```
 
 #### 2. 创建并进入 Python 环境
