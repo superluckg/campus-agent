@@ -1,0 +1,123 @@
+intents:
+  career_resume:
+    display_name: 简历分析
+    description: 分析或修改用户上传的简历、求职材料和项目经历表达。
+    agent: CareerAgent
+    required_entities: [file_id]
+    examples:
+      - 帮我看看这份简历有什么问题
+      - 我的项目经历应该怎么改
+      - 根据这个岗位分析我的简历
+      - 给我几个简历改写示例
+      - 这份求职材料完整吗
+  career_recruitment:
+    display_name: 招聘信息
+    description: 查询招聘会、双选会、就业活动和学校就业服务。
+    agent: CareerAgent
+    required_entities: []
+    examples:
+      - 最近学校有什么招聘会
+      - 这周有双选会吗
+      - 查询近期校招活动
+      - 学校就业中心有哪些服务
+      - 最近有什么就业通知
+  campus_network:
+    display_name: 校园网络
+    description: 校园网账号、认证、充值、套餐及常见网络问题。
+    agent: CampusAgent
+    required_entities: []
+    examples:
+      - 校园网怎么充值
+      - 校园网套餐怎么选择
+      - 校园网登录失败怎么办
+      - 忘记校园网密码了
+      - 校园网账号怎么办理
+  campus_affairs:
+    display_name: 校园事务
+    description: 学籍、考试、选课、毕业和学校办事政策流程。
+    agent: CampusAgent
+    required_entities: []
+    examples:
+      - 毕业需要满足什么条件
+      - 学籍异动怎么办理
+      - 选课有什么规定
+      - 缓考需要什么材料
+      - 学校的考试规定是什么
+  learning_document:
+    display_name: 学习资料问答
+    description: 阅读当前会话中上传的学习资料并回答问题或总结。
+    agent: LearningAgent
+    required_entities: [file_id]
+    examples:
+      - 总结我上传的讲义
+      - 这份PDF主要讲了什么
+      - 根据这份笔记回答问题
+      - 解释文档第三页的内容
+      - 对比我上传的两份资料
+  learning_plan:
+    display_name: 学习计划
+    description: 根据学习目标、期限和时间安排制定计划。
+    agent: LearningAgent
+    required_entities: []
+    examples:
+      - 帮我制定复习计划
+      - 两周怎么学完这门课
+      - 给我安排每天的学习任务
+      - 我想准备期末考试
+      - 如何规划这个月的学习
+  learning_gpa:
+    display_name: GPA计算
+    description: 根据用户上传的Excel成绩单计算演示规则GPA。
+    agent: LearningAgent
+    required_entities: [file_id]
+    examples:
+      - 帮我计算GPA
+      - 读取这个成绩单算绩点
+      - 我的平均绩点是多少
+      - 根据Excel计算GPA
+      - 算一下主修课绩点
+  compound:
+    display_name: 复合任务
+    description: 同一个问题明确包含两个不同Agent领域的任务。
+    agent: null
+    required_entities: []
+    examples:
+      - 分析简历并计算成绩单GPA
+      - 查招聘会并帮我制定学习计划
+      - 总结讲义并告诉我毕业条件
+      - 查询校招报名入口并了解校园网套餐
+      - 计算GPA并解释毕业要求
+  unclear:
+    display_name: 意图不清
+    description: 问题信息不足、语义歧义或无法确定应由哪个Agent处理。
+    agent: null
+    required_entities: []
+    examples:
+      - 这个怎么办
+      - 帮我处理一下
+      - 怎么弄
+      - 有问题
+      - 你看看
+  small_talk:
+    display_name: 日常聊天
+    description: 寒暄、感谢、身份和能力介绍、轻量日常聊天与简单笑话；明确业务任务优先识别为业务意图。
+    agent: null
+    required_entities: []
+    examples:
+      - 早上好呀，很高兴见到你
+      - 多谢你的帮助
+      - 可以介绍一下你的身份吗
+      - 想和你聊聊今天的心情
+      - 来个轻松有趣的小段子
+  out_of_scope:
+    display_name: 范围外请求
+    description: 超出已支持的校园事务、求职和学习功能的具体任务，如订票、订酒店、实时天气、投资、校外家庭宽带；不包括轻量闲聊和身份能力介绍。
+    agent: null
+    required_entities: []
+    examples:
+      - 代我预订明晚的酒店
+      - 查询今天最新的气象预警
+      - 帮我交易一笔基金
+      - 购买一张出差的火车票
+      - 替我申请家用光纤网络
+

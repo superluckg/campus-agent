@@ -1,0 +1,34 @@
+sources:
+  career_fair_list:
+    display_name: 青岛科技大学招聘会列表
+    url: https://school.gxjy.sdei.edu.cn/qust/front/NoticeListByParentId?sectionid=18
+    adapter: dynamic_list
+    allowed_agents: [CareerAgent]
+    keywords: [招聘会, 双选会, 线上招聘会, 招聘活动]
+    cache_ttl_seconds: 1800
+    first_page_only: true
+    follow_detail_pages: false
+  career_service_list:
+    display_name: 青岛科技大学就业服务列表
+    url: https://school.gxjy.sdei.edu.cn/qust/front/NoticeListByParentId?sectionid=17
+    adapter: dynamic_list
+    allowed_agents: [CareerAgent]
+    keywords: [就业服务, 服务指南, 就业中心]
+    cache_ttl_seconds: 1800
+    first_page_only: true
+    follow_detail_pages: false
+  campus_network_recharge:
+    display_name: 校园网账号办理与充值
+    url: https://nic.qust.edu.cn/info/1020/1811.htm
+    adapter: static_html
+    allowed_agents: [CampusAgent]
+    keywords: [校园网, 账号, 办理, 充值, 收费, 缴费]
+    cache_ttl_seconds: 86400
+  campus_network_package:
+    display_name: 校园网套餐选择
+    url: https://nic.qust.edu.cn/swzn/tcxzczlc.htm
+    adapter: static_html
+    allowed_agents: [CampusAgent]
+    keywords: [校园网, 套餐, 流量, 包月, 包年]
+    cache_ttl_seconds: 86400
+

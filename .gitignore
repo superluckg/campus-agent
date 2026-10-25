@@ -1,0 +1,6 @@
+/frontend/node_modules/
+/.env
+/.vscode/settings.json
+__pycache__/
+/data/knowledge_base/raw/
+/runtime/uploads/

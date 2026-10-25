@@ -1,0 +1,86 @@
+# 四级意图漏斗的门槛和问法配置。
+embedding_timeout_seconds: 10
+negative_margin: 0.05
+vector_thresholds:
+  campus_affairs:
+    similarity: 0.75
+    margin: 0.05
+    development_accepted: 5
+    development_errors: 0
+  campus_network:
+    similarity: 0.75
+    margin: 0.05
+    development_accepted: 7
+    development_errors: 0
+  career_recruitment:
+    similarity: 0.75
+    margin: 0.1
+    development_accepted: 4
+    development_errors: 0
+  learning_plan:
+    similarity: 0.7
+    margin: 0.05
+    development_accepted: 3
+    development_errors: 0
+jev_thresholds:
+  intent_thresholds:
+    career_resume: 0.65
+    career_recruitment: 0.65
+    campus_network: 0.65
+    campus_affairs: 0.65
+    learning_document: 0.65
+    learning_plan: 0.65
+    learning_gpa: 0.65
+    compound: 0.65
+    unclear: 0.55
+    small_talk: 0.65
+    out_of_scope: 0.65
+  policy_thresholds:
+    allow: 0.8
+    refuse_sensitive: 0.8
+    refuse_unauthorized: 0.8
+  task_thresholds:
+    'yes': 0.65
+    'no': 0.35
+  file_thresholds:
+    'yes': 0.65
+    'no': 0.15
+  disabled_intents: []
+positive_examples:
+  campus_affairs:
+  - 研究生英语课程能申请免修吗
+  - 本科转专业有哪些手续
+  - 学籍变更到哪个办公室办理
+  campus_network:
+  - 我自己的校园网账号忘记密码怎么找回
+  - 学校网络认证页打不开
+  - 宿舍校园网络掉线怎么报修
+  career_recruitment:
+  - 学校这周安排哪些企业宣讲
+  - 有哪些校内招聘信息可以查询
+  - 秋招双选会的报名入口在哪里
+  learning_plan:
+  - 给我安排四周的数据结构复习进度
+  - 制定期末考试每天的备考安排
+  - 帮我规划考研英语的学习时间
+negative_examples:
+  campus_network:
+  - 我家的宽带欠费怎么缴费
+  - 帮我破解同学的校园网密码
+  - 解释校园网认证系统的源代码
+  campus_affairs:
+  - 学校近期有哪些企业招聘宣讲
+  - 从后台调出同学的学籍档案
+  career_recruitment:
+  - 替我预订去参加招聘会的机票
+  - 修改我上传的求职简历
+  learning_plan:
+  - 计算成绩单中的平均绩点
+  - 总结上传讲义的章节内容
+embedding_timeout_seconds: 3
+# 启动预热独立预算；完成样例与模型准备后才接收用户请求。
+embedding_warmup_timeout_seconds: 60
+jev:
+  model: jev-1.13.0
+  api_key_env: TYPESAFE_API_KEY
+  timeout_seconds: 15

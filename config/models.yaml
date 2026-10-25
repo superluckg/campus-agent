@@ -1,0 +1,33 @@
+providers:
+  deepseek:
+    base_url_env: DEEPSEEK_BASE_URL
+    api_key_env: DEEPSEEK_API_KEY
+  ollama:
+    base_url_env: OLLAMA_BASE_URL
+
+components:
+  chat_model:
+    provider: deepseek
+    model: deepseek-v4-pro
+    temperature: 0.2
+  agent_model:
+    provider: deepseek
+    model: deepseek-v4-pro
+    temperature: 0.2
+  intent_model:
+    provider: deepseek
+    model: deepseek-v4-pro
+    temperature: 0.0
+  memory_model:
+    provider: deepseek
+    model: deepseek-v4-pro
+    temperature: 0.0
+  judge_model:
+    provider: deepseek
+    model: deepseek-v4-pro
+    temperature: 0.0
+  embedding_model:
+    provider: ollama
+    model: bge-m3:latest
+    dimensions: 1024
+    keep_alive_seconds: 1800

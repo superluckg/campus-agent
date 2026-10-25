@@ -1,0 +1,62 @@
+app:
+  name: QUST Campus Agent
+  display_name: 青岛科技大学校园生活助手
+  environment: local
+  timezone: Asia/Shanghai
+
+intent:
+  default_strategy: funnel
+  hybrid_config_file: intent_hybrid.yaml
+  llm_max_retries: 0
+  llm_max_output_tokens: 1536
+  clarification_threshold: 0.55
+  ambiguity_gap: 0.10
+
+agents:
+  recursion_limit: 50
+  max_agents_per_request: 2
+  max_tool_calls_per_agent: 4
+  max_same_tool_calls: 2
+  single_agent_timeout_seconds: 60
+  multi_agent_timeout_seconds: 90
+
+retrieval:
+  # 每个业务 Agent 的实际检索批次上限。
+  max_rounds: 3
+  source_timeout_seconds: 15
+  route_top_k: 20
+  rrf_k: 60
+  rrf_candidate_k: 10
+  chunk_size: 1000
+  chunk_overlap: 100
+
+skills:
+  optional_score_threshold: 0.55
+  max_selected: 3
+  approximate_token_budget: 2000
+  hard_character_limit: 6000
+  watch_files: true
+
+memory:
+  recent_message_count: 8
+  summarize_after_messages: 20
+  redis_ttl_seconds: 86400
+
+uploads:
+  max_files_per_conversation: 10
+  max_file_size_mb: 10
+  max_pdf_pages: 20
+  max_pptx_slides: 20
+  max_excel_sheets: 5
+  max_excel_rows_per_sheet: 500
+  max_text_characters: 50000
+  max_tool_output_characters: 40000
+  allowed_extensions: [pdf, docx, pptx, md, txt, xlsx]
+
+trace:
+  sse_event_ttl_seconds: 3600
+
+concurrency:
+  max_active_requests: 2
+  conversation_lock_ttl_seconds: 300
+

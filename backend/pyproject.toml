@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qust-campus-agent"
+version = "0.1.0"
+description = "基于 LangChain 与 LangGraph 的青岛科技大学校园生活助手"
+readme = { text = "基于 LangChain 与 LangGraph 的青岛科技大学校园生活助手后端。", content-type = "text/markdown" }
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.34,<1",
+  "pydantic>=2.11,<3",
+  "pyyaml>=6,<7",
+  "python-multipart>=0.0.20,<1",
+  "httpx>=0.28,<1",
+  "beautifulsoup4>=4.13,<5",
+  "lxml>=5,<7",
+  "playwright>=1.52,<2",
+  "sqlalchemy[asyncio]>=2.0,<3",
+  "psycopg[binary,pool]>=3.2,<4",
+  "asyncpg>=0.30,<1",
+  "pgvector>=0.3,<0.4",
+  "redis>=6,<8",
+  "langchain>=1,<2",
+  "langgraph>=1,<2",
+  "langchain-openai>=1,<2",
+  "langchain-ollama>=1,<2",
+  "langchain-postgres>=0.0.16,<1",
+  "langchain-text-splitters>=1,<2",
+  "jieba>=0.42,<1",
+  "scikit-learn>=1.5,<2",
+  "rank-bm25>=0.2,<1",
+  "pypdf>=5,<7",
+  "python-docx>=1.1,<2",
+  "python-pptx>=1.0,<2",
+  "openpyxl>=3.1,<4",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<10",
+  "pytest-asyncio>=0.25,<2",
+  "pytest-cov>=6,<8",
+  "ruff>=0.11,<1",
+  "mypy>=1.15,<2",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "ASYNC"]
+
+[tool.mypy]
+python_version = "3.11"
+plugins = ["pydantic.mypy"]
+strict = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-q --strict-markers"
