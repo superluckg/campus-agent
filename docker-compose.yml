@@ -1,9 +1,9 @@
-name: qust-campus-agent
+name: campus-agent
 
 services:
   postgres:
-    container_name: qust-postgres
-    image: ${POSTGRES_IMAGE:-pgvector/pgvector:pg16}
+    container_name: campus-agent-postgres
+    image: pgvector/pgvector:pg16
     pull_policy: never
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-qust_campus_agent}
@@ -12,46 +12,46 @@ services:
     ports:
       - "127.0.0.1:${POSTGRES_HOST_PORT:-15433}:5432"
     volumes:
-      - qust_pgdata:/var/lib/postgresql/data
+      - campus-agent_pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-qust_campus_agent}"]
       interval: 5s
       timeout: 5s
       retries: 20
     networks:
-      - qust-network
+      - campus-agent-network
     restart: unless-stopped
 
   redis:
-    container_name: qust-redis
-    image: ${REDIS_IMAGE:-redis:8.10.1}
+    container_name: campus-agent-redis
+    image: redis:8.10.1
     pull_policy: never
     command: ["redis-server", "--save", "", "--appendonly", "no"]
     ports:
       - "127.0.0.1:${REDIS_HOST_PORT:-6380}:6379"
     networks:
-      - qust-network
+      - campus-agent-network
     restart: unless-stopped
 
   ollama:
-    container_name: qust-ollama
-    image: ${OLLAMA_IMAGE:-ollama/ollama:latest}
+    container_name: campus-agent-ollama
+    image: ollama/ollama:0.34.1
     pull_policy: never
     ports:
       - "127.0.0.1:${OLLAMA_HOST_PORT:-11435}:11434"
     volumes:
-      - qust_ollama:/root/.ollama
+      - campus-agent_ollama:/root/.ollama
     gpus: all
     networks:
-      - qust-network
+      - campus-agent-network
     restart: unless-stopped
 
 volumes:
-  qust_pgdata:
-    name: qust_pgdata
-  qust_ollama:
-    name: qust_ollama
+  campus-agent_pgdata:
+    name: campus-agent_pgdata
+  campus-agent_ollama:
+    name: campus-agent_ollama
 
 networks:
-  qust-network:
-    name: qust-network
+  campus-agent-network:
+    name: campus-agent-network

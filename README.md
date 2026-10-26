@@ -69,8 +69,8 @@ cd campus-agent
 **使用 Conda：**
 
 ```powershell
-conda create -n qust-campus-agent python=3.11 -y
-conda activate qust-campus-agent
+conda create -n campus-agent python=3.11 -y
+conda activate campus-agent
 ```
 
 **没有 Conda：使用 Python 自带的 venv。**
@@ -78,11 +78,11 @@ conda activate qust-campus-agent
 先从 [Python 官网](https://www.python.org/downloads/windows/)安装 Python 3.11（包含 Windows 启动器 `py`），再在项目根目录执行：
 
 ```powershell
-py -3.11 -m venv ..\qust-campus-agent-venv
-..\qust-campus-agent-venv\Scripts\Activate.ps1
+py -3.11 -m venv ..\campus-agent-venv
+..\campus-agent-venv\Scripts\Activate.ps1
 ```
 
-venv 环境保存在项目同级的 `qust-campus-agent-venv/` 中。
+venv 环境保存在项目同级的 `campus-agent-venv/` 中。
 
 #### 3. 安装后端依赖与浏览器
 
@@ -119,10 +119,12 @@ notepad.exe .env
 ```powershell
 docker compose pull --policy always postgres redis ollama
 docker compose up -d --wait postgres redis ollama
-docker exec qust-ollama ollama pull bge-m3:latest
+docker compose exec ollama ollama pull bge-m3:latest
 ```
 
 三条命令依次完成：下载基础服务镜像、启动并等待服务就绪、下载 BGE-M3 向量模型。
+
+基础服务使用本机端口 `15433`、`6380`、`11435`；同机运行多套环境时，请先停止另一套基础服务和前后端。
 
 #### 7. 启动后端
 
@@ -162,13 +164,13 @@ docker compose up -d --wait postgres redis ollama
 Conda 环境：
 
 ```powershell
-conda activate qust-campus-agent
+conda activate campus-agent
 ```
 
 venv 环境：
 
 ```powershell
-..\qust-campus-agent-venv\Scripts\Activate.ps1
+..\campus-agent-venv\Scripts\Activate.ps1
 ```
 
 然后启动后端：
